@@ -1,0 +1,98 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "I enter city name and get the weather",
+        "description": "",
+        "id": "user-gets-the-weather-by-city-name;i-enter-city-name-and-get-the-weather",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 3476842001,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I hit the service endpoint",
+            "match": {
+              "location": "WeatherSteps.i_hit_the_service_endpoint()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 103350895,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I get the response",
+            "match": {
+              "location": "WeatherSteps.i_get_the_response()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 4723357,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "I get the status code 200",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 22
+                }
+              ],
+              "location": "WeatherSteps.i_get_the_status_code(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 3108876,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "I get following info in the response",
+            "match": {
+              "location": "WeatherSteps.i_get_following_info_in_the_response(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "main.temp",
+                  "282.15"
+                ],
+                "line": 10
+              },
+              {
+                "cells": [
+                  "main.pressure",
+                  "1030"
+                ],
+                "line": 11
+              }
+            ],
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 3,
+            "name": "@First"
+          }
+        ]
+      }
+    ],
+    "name": "User gets the weather by city name",
+    "description": "",
+    "id": "user-gets-the-weather-by-city-name",
+    "keyword": "Feature",
+    "uri": "Feature/Weather.feature"
+  }
+]
