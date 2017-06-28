@@ -3,18 +3,25 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.restassured.mapper.ObjectMapper;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.core.IsEqual.equalTo;
 
 /**
  * Created by Swarn on 6/20/2017.
  */
 public class WeatherSteps {
     private Response response;
+    private RequestSpecification request;
+
+
+    private String URL = "http://api.openweathermap.org/data/2.5/weather";
     //private int statuscode;
 
 
@@ -46,6 +53,7 @@ public class WeatherSteps {
     @And("^I get following info in the response$")
     public void i_get_following_info_in_the_response(DataTable table) throws Throwable {
         List<List<String>>  data = table.raw();
+        given().body("main.temp", (ObjectMapper) equalTo(282.15));
         System.out.println(data.get(0).get(1));
         System.out.println(data.get(1).get(1));
 
