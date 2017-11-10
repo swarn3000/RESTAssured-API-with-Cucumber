@@ -6,11 +6,15 @@ import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Assert;
 
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.Is.is;
+//import static org.hamcrest.core.IsEqual.equalTo;
+
+
 
 /**
  * Created by Swarn on 6/29/2017.
@@ -22,10 +26,10 @@ public class WeatherTestSteps {
 
     private String URL = "http://api.openweathermap.org/data/2.5/weather";
 
-    @Given("^Existing city with name \"([^\"]*)\"$")
-    public void existing_city_with_name(String arg1) throws Throwable {
+    @Given("^Existing city with name \"([^\"]*)\" and appid \"([^\"]*)\"$")
+    public void existing_city_with_name(String appid, String q) throws Throwable {
         request = given().param("APPID","ff1196b05786b07d2cb71c37f142adbe").
-                          param("q","NewDelhi");
+                          param("q","New Delhi");
 
         // Write code here that turns the phrase above into concrete actions
 
@@ -51,10 +55,16 @@ public class WeatherTestSteps {
     public void response_has_the_following_info(Map<String,String> responseFields) throws Throwable {
         for(Map.Entry<String,String> field: responseFields.entrySet()){
             if(StringUtils.isNumeric(field.getValue())){
-                json.body(field.getKey(),equalTo(Integer.parseInt(field.getValue())));
+                json.body(field.getKey(),is(Integer.parseInt(field.getValue())));
             }
             else {
-                json.body(field.getKey(),equalTo(field.getValue()));
+//                String s = String.valueOf(json.extract().path(field.getKey()));
+//                String s2 = field.getValue();
+//
+//                Assert.assertEquals(s, s2);
+
+
+                json.body(String.valueOf(field.getKey()),is(field.getValue()));
             }
         }
 
